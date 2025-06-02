@@ -258,7 +258,31 @@ class SiameseModel:
         except Exception as e:
             print(f"Ошибка сохранения: {str(e)}")
             return False
+    def plot_training_metrics(self):
+        """Визуализация метрик обучения"""
+        plt.figure(figsize=(12, 5))
+        
+        # График точности
+        plt.subplot(1, 2, 1)
+        plt.plot(self.history['accuracy'], 'b-o', linewidth=2)
+        plt.title('Динамика точности', fontsize=14)
+        plt.xlabel('Эпохи', fontsize=12)
+        plt.ylabel('Точность', fontsize=12)
+        plt.grid(True, linestyle='--', alpha=0.7)
+        plt.ylim(0, 1.1)
 
+        # График потерь
+        plt.subplot(1, 2, 2)
+        plt.plot(self.history['loss'], 'r-s', linewidth=2)
+        plt.title('Динамика потерь', fontsize=14)
+        plt.xlabel('Эпохи', fontsize=12)
+        plt.ylabel('Потери', fontsize=12)
+        plt.grid(True, linestyle='--', alpha=0.7)
+        plt.ylim(-0.1, 1.1)
+
+        plt.suptitle('Метрики обучения модели', fontsize=16)
+        plt.tight_layout()
+        plt.show() 
     def plot_and_save_results(self, query_path, result):
         """
         Визуализирует и сохраняет результаты сравнения
