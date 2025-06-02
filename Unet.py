@@ -296,6 +296,23 @@ if __name__ == "__main__":
     # Визуализация
     if model is not None:
         visualize_predictions(model, 'data/test_images', num_samples=5)
+# Графики обучения
+        plt.figure(figsize=(12, 5))
+        plt.subplot(1, 2, 1)
+        plt.plot(history.history['accuracy'], label='Точность (обучение)')
+        plt.plot(history.history['val_accuracy'], label='Точность (валидация)')
+        plt.title('Кривые точности')
+        plt.xlabel('Эпоха')
+        plt.ylabel('Точность')
+        plt.legend()
+
+        plt.subplot(1, 2, 2)
+        plt.plot(history.history['loss'], label='Потери (обучение)')
+        plt.plot(history.history['val_loss'], label='Потери (валидация)')
+        plt.title('Кривые потерь')
+        plt.xlabel('Эпоха')
+        plt.ylabel('Потери')
+        plt.legend()
 
         plt.tight_layout()
         plt.show()
